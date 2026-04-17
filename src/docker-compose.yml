@@ -13,6 +13,12 @@ services:
   orderdb:
     image: mcr.microsoft.com/mssql/server
 
+  discountdb:
+    image: sqlite
+    container_name: discountdb
+    volumes:
+      - discount_data:/data
+
   messagebroker:
     image: rabbitmq:management
 
@@ -55,6 +61,7 @@ services:
 volumes:
   postgres_catalog:
   postgres_basket:
+  discount_data:
 
 
 
