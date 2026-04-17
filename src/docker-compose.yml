@@ -52,9 +52,28 @@ services:
       context: .
       dockerfile: WebApps/Shopping.Web/Dockerfile
 
+  trackingdb:
+    image: postgres
+
+  paymentdb:
+    image: mcr.microsoft.com/mssql/server
+
+  tracking.api:
+    image: ${DOCKER_REGISTRY-}trackingapi
+    build:
+      context: .
+      dockerfile: Services/Tracking/Tracking.API/Dockerfile
+
+  payment.api:
+    image: ${DOCKER_REGISTRY-}paymentapi
+    build:
+      context: .
+      dockerfile: Services/Payment/Payment.API/Dockerfile
+
 volumes:
   postgres_catalog:
   postgres_basket:
+  postgres_tracking:
 
 
 
